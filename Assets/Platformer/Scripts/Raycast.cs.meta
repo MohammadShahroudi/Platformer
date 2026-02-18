@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: fe6a06d1e9e0144c6b59bf215b596699
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - questionBlockPrefab: {fileID: 7900040388613477401, guid: d80581696a58346b9887b26915fa81fc, type: 3}
+  - brickPrefab: {fileID: 7900040388613477401, guid: 9b7d4a752e42c49849397933079e5746, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
