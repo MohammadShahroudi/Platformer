@@ -27,11 +27,10 @@ public class Raycast : MonoBehaviour
         { 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-			// Collision collision;
              
             if (Physics.Raycast(ray, out hit))
             {
-				Debug.Log(hit);
+				// Debug.Log(hit);
 
 				if (hit.collider.gameObject.CompareTag("Brick"))
         		{ 

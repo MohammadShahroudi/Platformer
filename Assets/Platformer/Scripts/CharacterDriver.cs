@@ -10,7 +10,6 @@ public class CharacterDriver : MonoBehaviour
     public float apexHeight = 4.5f;
     public float apexTime = 0.5f;
     
-    
     Vector2 _velocity;
 
     CharacterController _controller;
