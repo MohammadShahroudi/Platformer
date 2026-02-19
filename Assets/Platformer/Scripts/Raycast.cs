@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using TMPro;
 
 public class Raycast : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class Raycast : MonoBehaviour
     public GameObject questionBlockPrefab;
 
     public GameObject brickPrefab;
+
+	public int coinCount = 0;
+
+	public TextMeshProUGUI coinText;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,17 +23,6 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // First Approach
-        // if (Input.GetMouseButtonDown(0))
-        // {
-        //     Destroy(brickPrefab);
-        // }
-        
-        // Second Approach
-        // bool hitBrick = false;
-        // bool hitQuestionBlock = false;
-        //  && Physics.Raycast(ray, out hit) && hit.collider.brickPrefab
-        
 		if (Input.GetMouseButtonDown(0))
         { 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -38,22 +32,19 @@ public class Raycast : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
 				Debug.Log(hit);
-                // GameObject hitObject = hit.collider.gameObject;
-                
-            }
+
+				if (hit.collider.gameObject.CompareTag("Brick"))
+        		{ 
+					Destroy(hit.collider.gameObject);
+        		}
+        
+        		if (hit.collider.gameObject.CompareTag("Question"))
+        		{
+        			// Debug.Log("Hit Question Block!");
+					coinCount += 1;
+					coinText.text = $" x{coinCount.ToString()}";
+        		}
+			}
          }
     }
-
-	void OnTriggerEnter(Collider collider)
-	{
-		if (collider.gameObject.CompareTag("Brick"))
-        { 
-			Debug.Log("Hit Brick!");
-        }
-        
-        if (collider.gameObject.CompareTag("Question"))
-        {
-        	Debug.Log("Hit Question Block!");
-        }
-	}
 }
