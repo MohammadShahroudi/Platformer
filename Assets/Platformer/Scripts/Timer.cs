@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
 
-    float timeLeft = 500;
+    float timeLeft = 5;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,5 +20,10 @@ public class Timer : MonoBehaviour
     {
         timeLeft -= Time.deltaTime;
         timeText.text = $"TIME\n {((int)timeLeft).ToString()}";
+
+		if (timeLeft <= 0)
+        {
+			Debug.Log("TIMES UP!");
+		}
     }
 }

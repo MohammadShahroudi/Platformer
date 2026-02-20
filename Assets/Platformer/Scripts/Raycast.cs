@@ -11,8 +11,10 @@ public class Raycast : MonoBehaviour
     public GameObject brickPrefab;
 
 	public int coinCount = 0;
+	public int pointCount = 000000;
 
 	public TextMeshProUGUI coinText;
+	public TextMeshProUGUI pointText; 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,7 +43,9 @@ public class Raycast : MonoBehaviour
         		{
         			// Debug.Log("Hit Question Block!");
 					coinCount += 1;
+					// pointCount += 1;
 					coinText.text = $" x{coinCount.ToString()}";
+					// pointText.text = $" {pointCount.ToString()}";
         		}
 			}
          }
