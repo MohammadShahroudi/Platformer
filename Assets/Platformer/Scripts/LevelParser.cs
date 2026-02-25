@@ -39,8 +39,10 @@ public class LevelParser : MonoBehaviour
     public GameObject brickPrefab;
     public GameObject questionBoxPrefab;
     public GameObject stonePrefab;
+	public GameObject poisonPrefab;
+	public GameObject goalPrefab;
+	
   
-
     void Start()
     {
         LoadLevel();
@@ -74,6 +76,22 @@ public class LevelParser : MonoBehaviour
                 // Todo - Instantiate a new GameObject that matches the type specified by the character
                 // Todo - Position the new GameObject at the appropriate location by using row and column
                 // Todo - Parent the new GameObject under levelRoot
+
+				// poison
+				if (currentChar == 'p')
+                {
+                    Vector3 newPosition = new Vector3(columnIndex + 0.5f, row + 0.5f, 0);
+                    Transform poisonInstance = Instantiate(poisonPrefab, levelRoot).transform;
+                    poisonInstance.position = newPosition;
+                }
+
+				// goal 
+				if (currentChar == 'g')
+                {
+                    Vector3 newPosition = new Vector3(columnIndex + 0.5f, row + 0.5f, 0);
+                    Transform goalInstance = Instantiate(goalPrefab, levelRoot).transform;
+                    goalInstance.position = newPosition;
+                }
 
                 // rock
                 if (currentChar == 'x')

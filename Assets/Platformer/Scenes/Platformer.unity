@@ -595,6 +595,8 @@ MonoBehaviour:
   brickPrefab: {fileID: 7900040388613477401, guid: 9b7d4a752e42c49849397933079e5746, type: 3}
   questionBoxPrefab: {fileID: 7900040388613477401, guid: d80581696a58346b9887b26915fa81fc, type: 3}
   stonePrefab: {fileID: 7900040388613477401, guid: 71fdcd2bb3d954b6a975b3e47e78c307, type: 3}
+  poisonPrefab: {fileID: 1943857748}
+  goalPrefab: {fileID: 1546248602}
 --- !u!4 &610288774
 Transform:
   m_ObjectHideFlags: 0
