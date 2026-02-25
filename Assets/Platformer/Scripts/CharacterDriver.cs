@@ -41,7 +41,7 @@ public class CharacterDriver : MonoBehaviour
         bool jumpPressedThisFrame = Keyboard.current.spaceKey.wasPressedThisFrame;
         bool jumpHeld = Keyboard.current.spaceKey.isPressed;
 
-        float gravityModifer = 0f;
+        float gravityModifer = 1f;
 
         if (_controller.isGrounded)
         {

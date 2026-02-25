@@ -18,6 +18,7 @@ public class CharacterControllerDriver : MonoBehaviour
     public float apexTime;
     
     CharacterController _controller;
+	Animator _animator;
     float _xVelocity;
     float _yVelocity;
 
@@ -33,6 +34,7 @@ public class CharacterControllerDriver : MonoBehaviour
     void Awake()
     {
         _controller = GetComponent<CharacterController>();
+		_animator = GetComponent<Animator>();
         _facingRight = Quaternion.Euler(0f, 90f, 0f);
         _facingLeft = Quaternion.Euler(0f, -90f, 0f);
     }
@@ -47,6 +49,8 @@ public class CharacterControllerDriver : MonoBehaviour
         bool jumpPressedThisFrame = Keyboard.current.spaceKey.wasPressedThisFrame;
         bool jumpHeld = Keyboard.current.spaceKey.isPressed;
         bool runHeld = Keyboard.current.leftShiftKey.isPressed;
+
+		// direction = 1f;
         
         if (_controller.isGrounded) // Ground-based movement
         {
@@ -91,6 +95,9 @@ public class CharacterControllerDriver : MonoBehaviour
 
         if ((collisionFlags & CollisionFlags.Sides) != 0)
             _xVelocity = 0f;
+
+		_animator.SetFloat("Speed", Mathf.Abs(_xVelocity));
+		_animator.SetBool("Grounded", _controller.isGrounded);
     }
 
 	void OnControllerColliderHit(ControllerColliderHit hit)
