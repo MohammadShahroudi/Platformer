@@ -6,9 +6,10 @@ public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
     public GameObject goalPrefab;
+	public GameObject marioPrefab;
 
-    float timeLeft = 5;
-	private bool timerRunning = false;
+    float timeLeft = 15;
+	private bool timerRunning = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,7 +31,7 @@ public class Timer : MonoBehaviour
     {
 	    if (collider.gameObject.CompareTag("Goal"))
 	    {
-		    // Debug.Log("Goal!");
+		    Debug.Log("Goal!");
 		    collider.gameObject.SetActive(false);
 		    StopTimer();
 	    }
@@ -39,13 +40,16 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-	    StartTimer();
-        timeLeft -= Time.deltaTime;
-        timeText.text = $"TIME\n {((int)timeLeft).ToString()}";
-
+		if (timerRunning)
+		{
+			timeLeft -= Time.deltaTime;
+        	timeText.text = $"TIME\n {((int)timeLeft).ToString()}";
+		}
+        
 		if (timeLeft <= 0)
         {
 			Debug.Log("TIMES UP!");
+			Destroy(marioPrefab);
 			StopTimer();
         }
     }

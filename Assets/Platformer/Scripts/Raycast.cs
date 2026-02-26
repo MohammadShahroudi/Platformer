@@ -11,6 +11,7 @@ public class Raycast : MonoBehaviour
 	public GameObject goalPrefab;
 	public GameObject poisonPrefab;
 	public GameObject marioPrefab;
+	public Timer timer;
 
 	public int coinCount = 0;
 	public int pointCount = 000000;
@@ -32,14 +33,30 @@ public class Raycast : MonoBehaviour
 
 	void OnTriggerEnter(Collider collider)
 	{
-		if (collider.gameObject.CompareTag("Brick"))
+		if (collider.gameObject.CompareTag("Goal"))
+		{
+			Debug.Log("Goal!");
+			timer.StopTimer();
+			collider.gameObject.SetActive(false);
+		}
+		if (collider.gameObject.CompareTag("Poison"))
+		{
+			Debug.Log("Too Bad!");
+			Destroy(gameObject);
+			collider.gameObject.SetActive(false);
+		}
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if (hit.collider.gameObject.CompareTag("Brick"))
         { 
 			pointCount += 100;
 			pointText.text = $"MARIO";
 			pointText.text = $" {pointCount.ToString()}";
-			Destroy(collider.gameObject);
+			Destroy(hit.collider.gameObject);
         }
-		if (collider.gameObject.CompareTag("Question"))
+		if (hit.collider.gameObject.CompareTag("Question"))
         {
         	// Debug.Log("Hit Question Block!");
 			coinCount += 1;
@@ -50,16 +67,6 @@ public class Raycast : MonoBehaviour
 			pointText.text = $" {pointCount.ToString()}";
 			// pointText.text = $" {pointCount.ToString()}";
         }
-		if (collider.gameObject.CompareTag("Goal"))
-		{
-			Debug.Log("Goal!");
-			collider.gameObject.SetActive(false);
-		}
-		if (collider.gameObject.CompareTag("Poison"))
-		{
-			Debug.Log("Too Bad!");
-			collider.gameObject.SetActive(false);
-		}
 	}
 }
 
